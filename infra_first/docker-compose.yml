@@ -1,0 +1,37 @@
+version: '1'
+
+services:
+    web:
+        container_name: boilerplate-web
+        build: ./web
+        image: boilerplate-web
+        ports:
+            - ${APP_PORT}:80
+        volumes:
+            - ${APP_DIR}:/home/app:ro
+        links:
+            - php
+        network_mode: bridge
+
+    php:
+        container_name: boilerplate-php
+        build: ./php
+        image: boilerplate-php
+        links:
+            - db
+        volumes:
+            - ${APP_DIR}:/home/app:cached
+        network_mode: bridge
+
+    db:
+        container_name: boilerplate-db
+        image: boilerplate-db
+        build: ./db
+        volumes:
+            - boilerplate_db_dir:/var/lib/mysql
+        ports:
+            - "${APP_PORT_DB}:3306"
+        network_mode: bridge
+
+volumes:
+  boilerplate_db_dir:
