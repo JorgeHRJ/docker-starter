@@ -1,0 +1,12 @@
+###> Docker
+infra/docker/.env
+###< Docker
+
+###> PhpStorm
+.idea/
+###< PhpStorm
+
+####> SublimeText
+*.sublime-project
+*.sublime-workspace
+###< SublimeText
